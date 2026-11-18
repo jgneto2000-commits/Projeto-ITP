@@ -68,4 +68,3 @@ Cor Paleta::obterCor(int indice) {
     }
     return cores[indice];
 }
-//teste
