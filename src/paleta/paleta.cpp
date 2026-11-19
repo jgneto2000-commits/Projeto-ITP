@@ -53,18 +53,22 @@ int Paleta::obterQuantidade() const {
 }
 
 void Paleta::adicionarCor(const Cor& cor) {
-    if (quantidade < tamanho) {
-        cores[quantidade] = {
-            limitar(cor.r),
-            limitar(cor.g),
-            limitar(cor.b)
-        };
-        quantidade++;
-    }
-    else {
+    if (quantidade >= tamanho) {
         tamanho++;
+        Cor* novasCores = new Cor[tamanho];
+        for (int i = 0; i < quantidade; i++) {
+            novasCores[i] = cores[i];
+        }
+        delete[] cores;
+        cores = novasCores;
     }
-}
+    cores[quantidade] = {
+        limitar(cor.r),
+        limitar(cor.g),
+        limitar(cor.b)
+    };
+    quantidade++;
+}   
 Cor Paleta::obterCor(int indice) {
     if (indice < 0 || indice >= quantidade) {
         return {0, 0, 0}; 
