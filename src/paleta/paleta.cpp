@@ -23,20 +23,20 @@ Paleta::Paleta(const string& nomeArquivo) {
 
     ifstream arquivo(nomeArquivo);
     if (arquivo.is_open()) {
-    string linha;
-    while (getline(arquivo, linha)) { 
-        if (!linha.empty() && linha[0] == '#') {
-            if (linha.length() >= 7) {
-                int r = stoi(linha.substr(1, 2), nullptr, 16);
-                int g = stoi(linha.substr(3, 2), nullptr, 16);
-                int b = stoi(linha.substr(5, 2), nullptr, 16);
+        string linha;
+        while (getline(arquivo, linha)) { 
+            if (!linha.empty() && linha[0] == '#') {
+                if (linha.length() >= 7) {
+                    int r = stoi(linha.substr(1, 2), nullptr, 16);
+                    int g = stoi(linha.substr(3, 2), nullptr, 16);
+                    int b = stoi(linha.substr(5, 2), nullptr, 16);
 
-                adicionarCor(Cor{r, g, b});
+                    adicionarCor(Cor{r, g, b});
+                }
             }
         }
+        arquivo.close();
     }
-    arquivo.close();
-}
     
 }
 
@@ -60,6 +60,9 @@ void Paleta::adicionarCor(const Cor& cor) {
             limitar(cor.b)
         };
         quantidade++;
+    }
+    else {
+        tamanho++;
     }
 }
 Cor Paleta::obterCor(int indice) {
