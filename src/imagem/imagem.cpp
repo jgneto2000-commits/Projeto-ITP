@@ -47,6 +47,53 @@ void Imagem::definePixel(int x, int y, const Pixel& pixel) {
 }
 
 bool Imagem::lerPPM(const string& nomeArquivo) {
+    ifstream arquivo(nomeArquivo);
+    if (!arquivo.is_open()) {
+        return false;
+    }
+
+    string formato;
+    int novaLargura = 0;
+    int novaAltura = 0;
+    int valorMaximo = 0;
+
+    if (!(arquivo >> formato) || formato != "P3") {
+        return false;
+    }
+
+    if (!(arquivo >> novaLargura >> novaAltura >> valorMaximo)){
+        return false;
+    }
+
+    if (novaLargura <= 0 || novaAltura <= 0 || valorMaximo <= 0) {
+        return false;
+    }
+
+    if (novaLargura != largura || novaAltura != altura || pixels == nullptr) {
+        delete[] pixels;
+        largura = novaLargura;
+        altura = novaAltura;
+        pixels = new Pixel[largura * altura];
+    }
+
+    for (int y = 0; y < altura; y++) {
+        for (int x = 0; x < largura; x++) {
+            int r, g, b;
+            if (!(arquivo >> r >> g >> b)) {
+                return false;
+            }
+
+            if (valorMaximo != 255) {
+                r = (r * 255) / valorMaximo;
+                g = (g * 255) / valorMaximo;
+                b = (b * 255) / valorMaximo;
+            }
+
+            pixels[y * largura + x] = {r, g, b};
+        }
+    }
+    
+    return true;
 }
 
 bool Imagem::salvarPPM(const string& nomeArquivo) const {
