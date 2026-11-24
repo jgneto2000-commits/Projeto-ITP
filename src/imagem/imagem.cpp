@@ -21,7 +21,6 @@ Imagem::Imagem(int largura, int altura) : largura(largura), altura(altura), pixe
 
 Imagem::~Imagem() {
     delete[] pixels;
-    pixels = nullptr;
 }
 
 int Imagem::obterLargura() const {

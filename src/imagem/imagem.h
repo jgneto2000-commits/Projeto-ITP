@@ -11,13 +11,13 @@ class Imagem {
   int altura;
   Pixel* pixels;
  public:
-  Imagem();
-  Imagem(int largura, int altura);
-  ~Imagem();
-  void definePixel(int x, int y, const Pixel& pixel);
-  Pixel obterPixel(int x, int y) const;
-  int obterLargura() const;
-  int obterAltura() const;
-  bool lerPPM(const std::string& nomeArquivo);
-  bool salvarPPM(const std::string& nomeArquivo) const;
+  Imagem(); // Construtor padrão
+  Imagem(int largura, int altura); // Construtor com parâmetros
+  ~Imagem(); // Destrutor
+  void definePixel(int x, int y, const Pixel& pixel); // Define o pixel na posição (x, y) com a cor especificada
+  Pixel obterPixel(int x, int y) const; // Retorna o pixel na posição (x, y)
+  int obterLargura() const; // Retorna a largura da imagem
+  int obterAltura() const; // Retorna a altura da imagem
+  bool lerPPM(const std::string& nomeArquivo); // Lê uma imagem no formato PPM a partir do arquivo especificado
+  bool salvarPPM(const std::string& nomeArquivo) const; // Salva a imagem no formato PPM no arquivo especificado
 };

@@ -16,13 +16,13 @@ private:
 
 public:
 
-  Paleta(int tamanho = 30);
-  Paleta(const std::string& nomeArquivo);
-  ~Paleta();
-  int obterTamanho() const;
-  int obterQuantidade() const;
-  void adicionarCor(const Cor& cor);
-  Cor obterCor(int indice);
+  Paleta(int tamanho = 30); // Construtor com tamanho padrão de 30 cores
+  Paleta(const std::string& nomeArquivo); // Construtor que lê a paleta de um arquivo
+  ~Paleta(); // Destrutor
+  int obterTamanho() const; // Retorna o tamanho da paleta
+  int obterQuantidade() const; // Retorna a quantidade de cores na paleta
+  void adicionarCor(const Cor& cor); // Adiciona uma cor à paleta
+  Cor obterCor(int indice); // Retorna a cor na posição especificada
 
 };
 
